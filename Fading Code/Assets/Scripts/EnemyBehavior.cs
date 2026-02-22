@@ -6,6 +6,12 @@ public class EnemyBehavior : MonoBehaviour
     public GameObject rightLocation;
     public float speed = 1f;
     private bool movingRight = true;
+    private SpriteRenderer sr;
+
+    void Start()
+    {
+        sr = GetComponent<SpriteRenderer>();
+    }
 
    
 
@@ -23,6 +29,7 @@ public class EnemyBehavior : MonoBehaviour
             if (transform.position.x >= rightLocation.transform.position.x)
             {
                 movingRight = false;
+                sr.flipX = true;
             }
         }
         else
@@ -31,6 +38,7 @@ public class EnemyBehavior : MonoBehaviour
             if (transform.position.x <= leftLocation.transform.position.x)
             {
                 movingRight = true;
+                sr.flipX = false;
             }
         }
     }
@@ -46,7 +54,8 @@ public class EnemyBehavior : MonoBehaviour
         } else if (other.CompareTag("Projectile"))
         {
             Debug.Log("Enemy hit by projectile!");
-            Destroy(transform.parent.gameObject); // destroy the enemy on hit
+            Destroy(other.gameObject); // destroy the projectile
+            Destroy(transform.parent.gameObject); // destroy the enemy 
         }
     }
 }

@@ -47,6 +47,8 @@ public class PlayerControls : MonoBehaviour
 
         jumpPressed = false; // reset the one-frame flag
 
+        this.transform.rotation = Quaternion.Euler(0, 0, 0);
+
 
     }
 
@@ -74,6 +76,7 @@ public class PlayerControls : MonoBehaviour
 
     private bool IsGrounded()
     {
+        UnityEngine.Debug.DrawRay(transform.position, Vector2.down * groundCheckDistance, Color.red);
         return Physics2D.Raycast(transform.position, Vector2.down, groundCheckDistance, groundLayer);
     }
 
