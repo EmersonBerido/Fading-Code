@@ -23,6 +23,9 @@ public class PlayerControls : MonoBehaviour
 
     private bool jumpPressed;
 
+    // Health Variables
+    public GameObject RespawnPoint;
+
     
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -73,6 +76,12 @@ public class PlayerControls : MonoBehaviour
     {
         return Physics2D.Raycast(transform.position, Vector2.down, groundCheckDistance, groundLayer);
     }
+
+    public void RespawnPlayer()
+    {
+        transform.position = RespawnPoint.transform.position;
+    }
+
 
     // ACTION INPUT SYSTEM FUNCTIONS
     /*
