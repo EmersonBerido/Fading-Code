@@ -2308,6 +2308,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Finish Line
       objectReference: {fileID: 0}
+    - target: {fileID: 3570320817171849047, guid: 98aca9f7027f2f647848171b5fe481b1, type: 3}
+      propertyPath: nextSceneIndex
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 7501068502746332462, guid: 98aca9f7027f2f647848171b5fe481b1, type: 3}
       propertyPath: m_LocalPosition.x
       value: 116.3

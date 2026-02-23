@@ -1,13 +1,34 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
+
 public class FinishLine : MonoBehaviour
 {
+    public int LastSceneIndex = 9;
+    public GameObject errorPopupCanvas;
+    
 
     public int nextSceneIndex;
 
-    public void NextLevel(int sceneIndex)
+    void Start()
     {
-        SceneManager.LoadScene(sceneIndex);
+        if (errorPopupCanvas) errorPopupCanvas.SetActive(false);
+    }
+
+    public void NextLevel(int sceneIndex, GameObject player = null)
+    {
+        if (sceneIndex < LastSceneIndex) 
+        {
+            SceneManager.LoadScene(sceneIndex);
+            return;
+        }
+
+        // Spawn Error popup UI
+        if (errorPopupCanvas) errorPopupCanvas.SetActive(true);
+
+        // Disable player movement
+        if (player) player.GetComponent<PlayerControls>().enabled = false;
+
+
     }
     void OnTriggerEnter2D(Collider2D other)
     {
@@ -15,8 +36,7 @@ public class FinishLine : MonoBehaviour
         {
             Debug.Log("Player reached the finish line!");
 
-            // Loads next scene in build settings
-            // SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1); 
+            NextLevel(nextSceneIndex, other.gameObject);
             
         }
     }
